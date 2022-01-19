@@ -3,9 +3,9 @@ export default ({ fileType, fileSystem }) => {
     //Merge function generously "borrowed" by Joel ant 05
     function deepMerge(obj1, obj2) {
         let outArray = undefined
-        if (Array.isArray(obj1) && Array.isArray(obj2)) outArray = obj1.concat(obj2)
-        else if (Array.isArray(obj1)) outArray = obj1.concat([obj2])
-        else if (Array.isArray(obj2)) outArray = obj2.concat([obj1])
+        if (Array.isArray(obj1) && Array.isArray(obj2)) outArray = obj2.concat(obj1)
+        else if (Array.isArray(obj1)) outArray = [obj2].concat(obj1)
+        else if (Array.isArray(obj2)) outArray = [obj1].concat(obj2)
         else if (typeof obj2 !== 'object') return obj2
 
         // Remove duplicates
@@ -202,7 +202,7 @@ export default ({ fileType, fileSystem }) => {
                     addTemplate(filePath, identifier, tobj);
                 else
                     tobj = cleanup(tobj);
-
+                    
                 return tobj;
             }
         },
